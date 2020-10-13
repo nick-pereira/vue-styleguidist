@@ -75,6 +75,13 @@ export default function (
 		vue$ = require.resolve('vue/dist/vue.esm-browser.js')
 	}
 
+	let vueTemplateCompiler:string;
+	try{
+		vueTemplateCompiler = require.resolve('vue-template-compiler')
+	}catch(e){
+		vueTemplateCompiler = require.resolve('./utils/template-compiler-v3')
+	}
+
 	webpackConfig = merge(webpackConfig, {
 		// we need to follow our own entry point
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
@@ -82,7 +89,8 @@ export default function (
 			alias: {
 				// allows to use the compiler
 				// without this, cli will overload the alias and use runtime esm
-				vue$
+				vue$,
+				'vue-template-compiler': vueTemplateCompiler
 			}
 		},
 		plugins: [
