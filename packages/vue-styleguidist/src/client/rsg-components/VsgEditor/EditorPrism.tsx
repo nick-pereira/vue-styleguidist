@@ -14,6 +14,7 @@ import { space } from 'react-styleguidist/lib/client/styles/theme'
 import prismTheme from 'react-styleguidist/lib/client/styles/prismTheme'
 import Styled, { JssInjectedProps } from 'rsg-components/Styled'
 import { useStyleGuideContext } from 'rsg-components/Context'
+import { parseComponent } from 'vsg-sfc-compiler'
 import getScript from '../../../loaders/utils/getScript'
 import { SanitizedStyleguidistConfig } from '../../../types/StyleGuide'
 
@@ -23,7 +24,7 @@ const highlight = (lang: 'vsg' | 'html', jsxInExamples: boolean): ((code: string
 			if (!code) {
 				return ''
 			}
-			const scriptCode = getScript(code, jsxInExamples)
+			const scriptCode = getScript(code, jsxInExamples, parseComponent)
 			const scriptCodeHighlighted = prismHighlight(
 				scriptCode,
 				languages[jsxInExamples ? 'jsx' : 'js'],

@@ -25,7 +25,7 @@
 			{
 				"commonjs": true,
 				"caseSensitive": true,
-				"ignore": ["sfc-compiler$"]
+				"ignore": ["vsg-sfc-compiler"]
 			}
 		],
 		"import/export": "error",

@@ -20,6 +20,7 @@ import importCodeExampleFile from './utils/importCodeExampleFile'
 import absolutize from './utils/absolutize'
 import getScript from './utils/getScript'
 import getParser from './utils/getParser'
+import tryRequireParseComponent from './utils/tryRequireParseComponent'
 
 const REQUIRE_IN_RUNTIME_PATH = absolutize('requireInRuntime')
 const EVAL_IN_CONTEXT_PATH = absolutize('evalInContext')
@@ -90,7 +91,7 @@ export async function examplesLoader(this: StyleguidistContext, src: string): Pr
 	// Load examples
 	const examples = source ? chunkify(source, updateExample, customLangs) : []
 
-	const getExampleLiveImports = (srci: string) => getImports(getScript(srci, config.jsxInExamples))
+	const getExampleLiveImports = (srci: string) => getImports(getScript(srci, config.jsxInExamples, tryRequireParseComponent))
 
 	// Find all import statements and require() calls in examples to make them
 	// available in webpack context at runtime.

@@ -1,10 +1,11 @@
+import { parseComponent } from "vue-template-compiler"
 import getScript from '../getScript'
 
 it('should return given code if code can be parsed properly', () => {
 	const code = `export default {
         proper:'test'
     }`
-	const result = getScript(code, false)
+	const result = getScript(code, false, parseComponent)
 
 	expect(result).toEqual(code)
 })
@@ -13,7 +14,7 @@ it('should return empty if only a template is given', () => {
 	const code = `<FunctionalButton id="test">
     In the docs block
 </FunctionalButton>`
-	const result = getScript(code, false)
+	const result = getScript(code, false, parseComponent)
 
 	expect(result).toEqual('')
 })
@@ -22,7 +23,7 @@ it('should return script part if SFC is detected', () => {
 	const code = `export default {
         proper:'test'
     }`
-	const result = getScript(`<script lang="ts">${code}</script>`, false)
+	const result = getScript(`<script lang="ts">${code}</script>`, false, parseComponent)
 
 	expect(result).toEqual(code)
 })
@@ -34,7 +35,8 @@ it('should return script part if SFC is detected and it has a template', () => {
 	const result = getScript(
 		`<template><div/></template>
         <script lang="ts">${code}</script>`,
-		false
+		false,
+		parseComponent
 	)
 
 	expect(result).toEqual(code)
@@ -46,7 +48,8 @@ it('should return script part if weird pseudo-jsx format', () => {
 	const result = getScript(
 		`${code}
     <btn/>`,
-		false
+		false,
+		parseComponent
 	)
 
 	expect(result).toEqual(code)
@@ -55,7 +58,7 @@ it('should return script part if weird pseudo-jsx format', () => {
 it('should return itselft if user decided for jsx', () => {
 	const code = `const btn = require('button')
     <btn/>`
-	const result = getScript(code, true)
+	const result = getScript(code, true, parseComponent)
 
 	expect(result).toEqual(code)
 })
@@ -68,7 +71,7 @@ it('should parse new Vue as normal', () => {
         \`
     })`
 
-	const result = getScript(code, false)
+	const result = getScript(code, false, parseComponent)
 
 	expect(result).toEqual(code)
 })
@@ -81,7 +84,7 @@ it('should parse export default as itself', () => {
         \`
     }`
 
-	const result = getScript(code, false)
+	const result = getScript(code, false, parseComponent)
 
 	expect(result).toEqual(code)
 })
@@ -94,7 +97,7 @@ it('should parse module.exports as itself', () => {
         \`
     }`
 
-	const result = getScript(code, false)
+	const result = getScript(code, false, parseComponent)
 
 	expect(result).toEqual(code)
 })
@@ -114,7 +117,8 @@ it('should parse SFC with exports', () => {
 	<template>
 		<div>hello</div>
 	</template>`,
-		false
+		false,
+		parseComponent
 	)
 
 	expect(result.trim()).toEqual(code)

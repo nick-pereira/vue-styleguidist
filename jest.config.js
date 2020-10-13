@@ -15,7 +15,8 @@ module.exports = {
 		'./packages/vue-styleguidist/node_modules/react-styleguidist/lib/client'
 	],
 	moduleNameMapper: {
-		'^.+\\.css$': '<rootDir>/test/empty.js'
+		'^.+\\.css$': '<rootDir>/test/empty.js',
+		'sfc-compiler\\$': 'vue-template-compiler'
 	},
 	collectCoverageFrom: [
 		'packages/*/src/**/*{!.d,}.{js,ts,tsx}',

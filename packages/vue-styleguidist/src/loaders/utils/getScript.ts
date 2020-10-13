@@ -1,7 +1,7 @@
-import { parseComponent } from 'sfc-compiler$'
+import { SFCDescriptor } from 'vue-template-compiler'
 import { isCodeVueSfc } from 'vue-inbrowser-compiler-utils'
 
-export default function (code: string, jsxInExamples: boolean): string {
+export default function (code: string, jsxInExamples: boolean, parseComponent: (code:string) => SFCDescriptor): string {
 	// In case we are loading a vue component as an example, extract script tag
 	if (isCodeVueSfc(code)) {
 		const parts = parseComponent(code)

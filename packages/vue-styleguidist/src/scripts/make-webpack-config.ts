@@ -79,7 +79,7 @@ export default function (
 	try{
 		vueTemplateCompiler = require.resolve('vue-template-compiler')
 	}catch(e){
-		vueTemplateCompiler = require.resolve('./utils/template-compiler-v3')
+		vueTemplateCompiler = require.resolve('../loaders/utils/template-compiler-v3')
 	}
 
 	webpackConfig = merge(webpackConfig, {
@@ -90,7 +90,7 @@ export default function (
 				// allows to use the compiler
 				// without this, cli will overload the alias and use runtime esm
 				vue$,
-				'sfc-compiler$': vueTemplateCompiler
+				'vsg-sfc-compiler$': vueTemplateCompiler
 			}
 		},
 		plugins: [
@@ -277,6 +277,5 @@ export default function (
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env)
 	}
-
 	return webpackConfig
 }
