@@ -25,7 +25,7 @@
 			{
 				"commonjs": true,
 				"caseSensitive": true,
-				"ignore": ["vue-inbrowser-compiler"]
+				"ignore": ["sfc-compiler$"]
 			}
 		],
 		"import/export": "error",

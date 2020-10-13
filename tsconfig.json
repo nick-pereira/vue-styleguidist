@@ -13,7 +13,8 @@
 			"rsg-components/*": [
 				"packages/vue-styleguidist/src/client/rsg-components/*",
 				"packages/vue-styleguidist/node_modules/react-styleguidist/lib/client/rsg-components/*"
-			]
+			],
+			"sfc-compiler$": ["node_modules/vue-template-compiler"]
 		},
 		"strictFunctionTypes": false,
 		"jsx": "react"

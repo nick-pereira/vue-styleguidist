@@ -1,4 +1,4 @@
-import { parseComponent } from 'vue-template-compiler'
+import { parseComponent } from 'sfc-compiler$'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as Rsg from 'react-styleguidist'

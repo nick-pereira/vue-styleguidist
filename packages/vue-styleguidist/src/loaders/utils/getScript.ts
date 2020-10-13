@@ -1,4 +1,4 @@
-import { parseComponent } from 'vue-template-compiler'
+import { parseComponent } from 'sfc-compiler$'
 import { isCodeVueSfc } from 'vue-inbrowser-compiler-utils'
 
 export default function (code: string, jsxInExamples: boolean): string {

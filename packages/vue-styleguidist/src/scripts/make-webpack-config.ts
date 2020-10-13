@@ -90,7 +90,7 @@ export default function (
 				// allows to use the compiler
 				// without this, cli will overload the alias and use runtime esm
 				vue$,
-				'vue-template-compiler': vueTemplateCompiler
+				'sfc-compiler$': vueTemplateCompiler
 			}
 		},
 		plugins: [
